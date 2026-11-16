@@ -52,7 +52,8 @@ def render(language, page):
         rows = []
         for item in DATA['education']:
             school = val(item.get('institution', ['Beihang University', '北京航空航天大学']))
-            rows.append(f'<article class="mini-edu"><time>{E(val(item["date"]))}</time><div><h3>{E(val(item["degree"]))}</h3><div class="school">{E(school)}</div><p>{emphasize(val(item["detail"]))}</p></div></article>')
+            school_html = E(school) + (f' · <strong>{E(val(item["rank"]))}</strong>' if item.get('rank') else '')
+            rows.append(f'<article class="mini-edu"><time>{E(val(item["date"]))}</time><div><h3>{E(val(item["degree"]))}</h3><div class="school">{school_html}</div><p>{emphasize(val(item["detail"]))}</p></div></article>')
         return ''.join(rows)
 
     def awards(limit=None):

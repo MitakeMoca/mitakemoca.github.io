@@ -32,8 +32,12 @@
         "软件工程硕士阶段"
       ],
       "detail": [
-        "GPA 3.90 / 4.00 · Ranked 1st in the programme.",
-        "GPA 3.90 / 4.00 · 专业排名第 1。"
+        "GPA 3.90 / 4.00",
+        "GPA 3.90 / 4.00"
+      ],
+      "rank": [
+        "Ranked 1st",
+        "专业排名第 1"
       ]
     },
     {
@@ -144,12 +148,12 @@
     },
     {
       "term": [
-        "Fall 2024",
-        "2024 年秋"
+        "Spring 2025",
+        "2025 年春"
       ],
       "title": [
-        "Fundamentals of Programming",
-        "程序设计基础"
+        "Introduction to Artificial Intelligence",
+        "人工智能导论"
       ],
       "lead": true
     },
@@ -159,8 +163,8 @@
         "2024 年秋"
       ],
       "title": [
-        "Introduction to Artificial Intelligence",
-        "人工智能导论"
+        "Fundamentals of Programming",
+        "程序设计基础"
       ],
       "lead": true
     },
@@ -196,8 +200,8 @@
         "祝贺"
       ],
       "text": [
-        "“LinYi — Intelligent Memory Engine for Galaxy Kylin OS Agents” won a National Champion award in the Challenge Cup. Congratulations to Ruixuan Luo and Benzhao Wu!",
-        "“麟忆——银河麒麟 OS Agent 智能记忆引擎”获挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Ruixuan Luo、Benzhao Wu！"
+        "🎉 “LinYi — Intelligent Memory Engine for Galaxy Kylin OS Agents” won a National Champion award in the Challenge Cup. Congratulations to Ruixuan Luo and Benzhao Wu!",
+        "🎉 “麟忆——银河麒麟 OS Agent 智能记忆引擎”获挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Ruixuan Luo、Benzhao Wu！"
       ],
       "people": [
         "Ruixuan Luo",
@@ -211,8 +215,8 @@
         "研究"
       ],
       "text": [
-        "Started research on Agentic embodied intelligence at Baidu.",
-        "在百度开始 Agentic 具身智能方向的研究。"
+        "🎉 Started research on Agentic embodied intelligence at Baidu.",
+        "🎉 在百度开始 Agentic 具身智能方向的研究。"
       ]
     },
     {
@@ -222,8 +226,8 @@
         "论文"
       ],
       "text": [
-        "Two papers accepted as Oral presentations at ICEBE 2026 (AI + Finance). Congratulations to Zhixiang Liu and Yibo Hao!",
-        "两篇论文被 AI + 金融会议 ICEBE 2026 接收为 Oral。祝贺 Zhixiang Liu、Yibo Hao！"
+        "🎉 Two papers accepted as Oral presentations at ICEBE 2026 (AI + Finance). Congratulations to Zhixiang Liu and Yibo Hao!",
+        "🎉 两篇论文被 AI + 金融会议 ICEBE 2026 接收为 Oral。祝贺 Zhixiang Liu、Yibo Hao！"
       ],
       "papers": [
         "Correlation-Constrained Contrastive Pre-training and Ordinal-Aware Few-Label Adaptation for Cross-Sector Corporate Credit Rating",
@@ -241,8 +245,8 @@
         "教育"
       ],
       "text": [
-        "Began my Ph.D. in Artificial Intelligence at Beihang University, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.",
-        "进入北航人工智能专业攻读博士，与中关村实验室联合培养，导师为张宝昌教授。"
+        "🎉 Began my Ph.D. in Artificial Intelligence at Beihang University, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.",
+        "🎉 进入北航人工智能专业攻读博士，与中关村实验室联合培养，导师为张宝昌教授。"
       ],
       "people": [
         "Baochang Zhang",
@@ -256,8 +260,8 @@
         "论文"
       ],
       "text": [
-        "S³-LoRA accepted to ACM Multimedia 2026. I am a co-first author.",
-        "共同第一作者论文 S³-LoRA 被 ACM Multimedia 2026 录用。"
+        "🎉 S³-LoRA accepted to ACM Multimedia 2026. I am a co-first author.",
+        "🎉 共同第一作者论文 S³-LoRA 被 ACM Multimedia 2026 录用。"
       ]
     },
     {
@@ -267,8 +271,8 @@
         "获奖"
       ],
       "text": [
-        "Our project “Intelligent Operations Assistant for the Kylin Operating System” (StarOps) won the National Champion award at the 19th Challenge Cup competition. Congratulations to Haohan Tang, Jiayuxuan Yang, and Donghao Fu!",
-        "“基于银河麒麟操作系统的智能运维管家工具研究”（星维管家）获第十九届挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Haohan Tang、Jiayuxuan Yang、Donghao Fu！"
+        "🎉 Our project “Intelligent Operations Assistant for the Kylin Operating System” (StarOps) won the National Champion award at the 19th Challenge Cup competition. Congratulations to Haohan Tang, Jiayuxuan Yang, and Donghao Fu!",
+        "🎉 “基于银河麒麟操作系统的智能运维管家工具研究”（星维管家）获第十九届挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Haohan Tang、Jiayuxuan Yang、Donghao Fu！"
       ],
       "people": [
         "Haohan Tang",
@@ -283,8 +287,8 @@
         "获奖"
       ],
       "text": [
-        "Our project “AI-Based High-Precision Imaging and Intelligent Inspection of Spandex Yarn Packages” won the Champion award in the Capital Challenge Cup special competition. Congratulations to Gengxiong Zhuang!",
-        "“基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用”获首都挑战杯“青智未来”专项赛擂主。祝贺 Gengxiong Zhuang！"
+        "🎉 Our project “AI-Based High-Precision Imaging and Intelligent Inspection of Spandex Yarn Packages” won the Champion award in the Capital Challenge Cup special competition. Congratulations to Gengxiong Zhuang!",
+        "🎉 “基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用”获首都挑战杯“青智未来”专项赛擂主。祝贺 Gengxiong Zhuang！"
       ],
       "people": [
         "Gengxiong Zhuang"
