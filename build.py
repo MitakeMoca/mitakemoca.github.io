@@ -84,7 +84,7 @@ def render(language):
         education.append(f'<article class="timeline-row mini-edu">{date_label(val(item["date"]))}<div><h3>{E(val(item["degree"]))}</h3><p class="school">{school}</p><p class="detail">{E(val(item["detail"]))}</p></div></article>')
 
     experience = f'<article class="timeline-row">{date_label("2026.11 — " + t("Present", "至今"))}<div><h3 class="company-heading"><img class="company-logo" src="{asset("baidu-logo.png")}" alt="Baidu logo" width="90" height="32"><span>{t("Baidu", "百度")}</span></h3><p class="job">{t("Agentic Embodied Intelligence", "Agentic 具身智能")}</p><p class="detail">{t("Research on VLA post-training for Agentic embodied intelligence.", "围绕 Agentic 具身智能开展 VLA 后训练研究。")}</p></div></article>'
-    projects = f'''<details class="project-details"><summary>{t('Selected projects', '代表项目')}<span class="chevron" aria-hidden="true">⌄</span></summary><div class="project-list">
+    projects = f'''<details class="project-details"><summary><span class="when-closed">{t('Show projects (3)', '展开项目（3）')}</span><span class="when-open">{t('Hide projects', '收起项目')}</span><span class="chevron" aria-hidden="true">⌄</span></summary><div class="project-list">
 <article><h3>StarOps · {t('Intelligent operations for Kylin', '星维管家')}</h3><p>{t('Built a system-level agent for the Kylin operating system, integrating monitoring, anomaly diagnosis, automated optimisation, MCP-compatible services, and log anomaly detection.', '面向银河麒麟操作系统构建系统级 Agent，集成状态监控、异常诊断与自动调优，开发符合 MCP 协议的系统接口与日志异常检测算法。')}</p><a href="https://github.com/Kylin-StarOps-Team/StarOps">{t('Source code ↗', '项目代码 ↗')}</a></article>
 <article><h3>{t('Low-precision adaptation · Huawei Pangu', '低精度模型适配 · 华为盘古')}</h3><p>{t('Reproduced L4Q and adapted MXFP8 training schemes, investigating quantization-aware PEFT under limited compute and memory budgets.', '复现 L4Q，适配 MXFP8 训练方案，在有限算力与显存条件下探索量化感知 PEFT。')}</p></article>
 <article><h3>SmartFibers · {t('AI-based industrial inspection', 'AI 工业质检')}</h3><p>{t('High-precision imaging and intelligent inspection of spandex yarn packages, awarded in the Capital Challenge Cup special competition.', '基于 AI 的氨纶丝饼高精度成像与智能检测技术研究及应用，获首都挑战杯“青智未来”专项赛擂主。')}</p><div class="project-links"><a href="https://github.com/MitakeMoca/SmartFibers-frontend">Frontend ↗</a><a href="https://github.com/MitakeMoca/SmartFibers-backend">Backend ↗</a></div></article>
@@ -105,7 +105,8 @@ def render(language):
     content = about + section('Updates' if not zh else '最新动态', 'updates', recent)
     content += section(t('Publications', '论文'), 'publications', publications)
     content += section(t('Education', '教育背景'), 'education', ''.join(education))
-    content += section(t('Experiences', '研究经历'), 'experiences', experience + projects)
+    content += section(t('Experiences', '研究经历'), 'experiences', experience)
+    content += section(t('Projects', '项目'), 'projects', projects)
     content += section(t('Mentorship', '指导与教学'), 'mentorship', mentorship)
     content += section(t('Awards', '奖励与荣誉'), 'awards', awards)
     nav = ''.join(f'<a href="#{id_}">{heading}</a>' for id_, heading in [('about', t('About', '关于我')), ('updates', 'Updates'), ('publications', t('Publications', '论文')), ('education', t('Education', '教育')), ('experiences', t('Experiences', '经历'))])
