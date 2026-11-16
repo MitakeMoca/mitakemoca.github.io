@@ -14,6 +14,7 @@ OUT = ROOT / parser.parse_args().out
 OUT.mkdir(parents=True, exist_ok=True)
 shutil.copytree(ROOT / 'assets', OUT / 'assets', dirs_exist_ok=True)
 E = html.escape
+UPDATES_PREVIEW_COUNT = 3
 PAGES = {'home': ('Home', '主页'), 'research': ('Research', '研究'), 'experiences': ('Experiences', '经历'), 'background': ('Background', '教育与荣誉')}
 
 
@@ -108,10 +109,11 @@ def render(language, page):
             paper_list = ''.join(f'<li>{E(name)}</li>' for name in item.get('papers', []))
             if paper_list:
                 body += f'<ul class="update-papers">{paper_list}</ul>'
-            updates.append(f'<article class="update" {"data-older-update" if n >= 8 else ""}><time>{E(item["date"])}</time><div><span class="kind">{E(val(item["type"]))}</span>{body}</div></article>')
+            updates.append(f'<article class="update" {"data-older-update" if n >= UPDATES_PREVIEW_COUNT else ""}><time>{E(item["date"])}</time><div><span class="kind">{E(val(item["type"]))}</span>{body}</div></article>')
         updates_html = ''.join(updates)
-        if len(DATA['updates']) > 8:
-            updates_html += f'<button class="plain-button" data-more-updates aria-expanded="false" data-more="{t("Show earlier updates ↓", "展开往期动态 ↓")}" data-less="{t("Show fewer updates ↑", "收起往期动态 ↑")}" hidden>{t("Show earlier updates ↓", "展开往期动态 ↓")}</button>'
+        if len(DATA['updates']) > UPDATES_PREVIEW_COUNT:
+            remaining = len(DATA['updates']) - UPDATES_PREVIEW_COUNT
+            updates_html += f'<button class="plain-button" data-more-updates aria-expanded="false" data-more="{t(f"Show more updates ({remaining}) ↓", f"展开更多动态（{remaining}）↓")}" data-less="{t("Show fewer updates ↑", "收起动态 ↑")}" hidden>{t(f"Show more updates ({remaining}) ↓", f"展开更多动态（{remaining}）↓")}</button>'
         content += section(t('Updates', '最新动态'), '01', updates_html, 'updates')
         content += section(t('Publications', '论文'), '02', publications(), 'publications', 'research', t('All research', '全部研究'))
         content += section(t('Experiences', '研究经历'), '03', baidu(), 'experiences', 'experiences', t('Projects & experience', '经历与项目'))
