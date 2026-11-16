@@ -14,7 +14,7 @@ OUT = ROOT / parser.parse_args().out
 OUT.mkdir(parents=True, exist_ok=True)
 shutil.copytree(ROOT / 'assets', OUT / 'assets', dirs_exist_ok=True)
 E = html.escape
-PAGES = {'home': ('Home', '主页'), 'research': ('Research', '研究'), 'experiences': ('Experiences', '经历'), 'mentorship': ('Mentorship', '指导与教学'), 'background': ('Background', '教育与荣誉')}
+PAGES = {'home': ('Home', '主页'), 'research': ('Research', '研究'), 'experiences': ('Experiences', '经历'), 'background': ('Background', '教育与荣誉')}
 
 
 def render(language, page):
@@ -27,6 +27,8 @@ def render(language, page):
 
     def url(name, lang=None):
         lang = language if lang is None else lang
+        if name == 'mentorship':
+            return url('home', lang) + '#mentorship'
         return base + ('zh/' if lang == 'zh' else '') + ('' if name == 'home' else name + '/')
 
     def link(name, text):
@@ -41,8 +43,6 @@ def render(language, page):
 
     def emphasize(text):
         value = E(text)
-        for name in ('Baochang Zhang', '张宝昌'):
-            value = value.replace(name, '<strong>' + name + '</strong>')
         value = value.replace('Ranked 1st', '<strong>Ranked 1st</strong>')
         value = value.replace('专业排名第 1', '<strong>专业排名第 1</strong>')
         return value
@@ -63,7 +63,7 @@ def render(language, page):
             authors = []
             for author in paper['authors']:
                 name = E(author['name'])
-                if author['name'] in ('Qixuan Wu', 'Baochang Zhang'):
+                if author['name'] == 'Qixuan Wu':
                     name = '<strong>' + name + '</strong>'
                 markers = ('*' if author.get('equal') else '') + ('†' if author.get('corresponding') else '')
                 authors.append(name + (f'<sup>{markers}</sup>' if markers else ''))
@@ -71,7 +71,7 @@ def render(language, page):
             figure_url = base + 'assets/' + paper['figure']
             figure = f'<a class="paper-figure" href="{figure_url}" target="_blank" rel="noopener"><img src="{figure_url}" alt="{E(val(paper["figure_alt"]))}" loading="lazy"><span>{t("View figure ↗", "查看主图 ↗")}</span></a>'
             links = ''.join(f'<a href="{x["url"]}">{E(x["label"])} ↗</a>' for x in paper.get('links', []))
-            papers.append(f'<article class="publication" id="{paper["id"]}">{figure}<div><div class="meta">{E(paper["venue"])}</div><h3>{E(paper["title"])}</h3><p class="authors">{author_line}</p><p class="abstract" data-full-abstract>{E(val(paper["abstract"]))}</p>{f"<div class=paper-links>{links}</div>" if links else ""}</div></article>')
+            papers.append(f'<article class="publication" id="{paper["id"]}">{figure}<div><div class="meta">{E(paper["venue"])}</div><h3>{E(paper["title"])}</h3><p class="authors">{author_line}</p><details class="paper-abstract"><summary><span class="expand-label">{t('Show abstract', '展开摘要')}</span><span class="collapse-label">{t('Hide abstract', '收起摘要')}</span><span class="abstract-chevron" aria-hidden="true">⌄</span></summary><p class="abstract" data-full-abstract>{E(val(paper["abstract"]))}</p></details>{f"<div class=paper-links>{links}</div>" if links else ""}</div></article>')
         legend = t('* Equal contribution. † Corresponding author.', '* 共同第一作者。† 通讯作者。')
         return ''.join(papers) + f'<p class="author-note">{legend}</p>'
 
@@ -81,13 +81,10 @@ def render(language, page):
             notes = []
             if course.get('lead'):
                 notes.append(t('Head TA', '助教组长'))
-            if course.get('award'):
-                notes.append(t('Outstanding Teaching Assistant', '北航学院优秀助教'))
             name = E(val(course['title']))
-            if course.get('repo'):
-                name = f'<a href="{course["repo"]}">{name}</a>'
+            repo = f' <a class="ta-repo" href="{E(course["repo"])}">{t("Repository ↗", "教学仓库 ↗")}</a>' if course.get('repo') else ''
             note = f'<span class="ta-note"> · {" · ".join(notes)}</span>' if notes else ''
-            rows.append(f'<div class="ta-row" data-home-course><time>{E(val(course["term"]))}</time><div>{name}{note}</div></div>')
+            rows.append(f'<div class="ta-row" data-home-course><time>{E(val(course["term"]))}</time><div>{name}{note}{repo}</div></div>')
         heading = t('Teaching Assistant · Beihang University', '课程助教 · 北京航空航天大学')
         return f'<p class="ta-heading">{heading}</p><div class="ta-list">{"".join(rows)}</div>'
 
@@ -95,17 +92,19 @@ def render(language, page):
         return f'<article class="experience"><div class="date">2026.11<br>— {t("Present", "至今")}</div><div><h3>{t("Baidu", "百度")}</h3><div class="job">{t("Agentic Embodied Intelligence", "Agentic 具身智能")}</div><p>{t("VLA post-training for Agentic embodied intelligence.", "围绕 Agentic 具身智能开展 VLA 后训练研究。")}</p></div></article>'
 
     def explore():
-        options = [('research', t('VLA post-training and selected publications.', 'VLA 后训练与代表论文。')), ('mentorship', t('Teaching, student research, and open learning resources.', '课程教学、科研指导与开源学习资源。')), ('experiences', t('Industry research and projects built from ideas to systems.', '产业研究与从方法走向系统的项目。')), ('background', t('Education, academic milestones, and awards.', '教育背景、学习经历与荣誉。'))]
+        options = [('research', t('VLA post-training and selected publications.', 'VLA 后训练与代表论文。')), ('experiences', t('Industry research and projects built from ideas to systems.', '产业研究与从方法走向系统的项目。')), ('background', t('Education, academic milestones, and awards.', '教育背景、学习经历与荣誉。'))]
         return '<div class="explore-grid">' + ''.join(f'<a class="explore-item" href="{url(k)}"><h3>{val(PAGES[k])}<span aria-hidden="true">↗</span></h3><p>{d}</p></a>' for k, d in options) + '</div>'
 
     def contact():
         return f'<section class="contact" id="contact"><div class="eyebrow">{t("KEEP IN TOUCH", "保持联系")}</div><h2 style="margin-top:12px">{t("Let’s exchange ideas.", "欢迎交流。")}</h2><p>{t("For research, collaboration, or questions about the teaching materials:", "如果你想交流研究、探讨合作，或讨论教学资料：")}<br><a href="mailto:{DATA["email"]}">{DATA["email"]}</a> &nbsp; / &nbsp; <a href="{DATA["github"]}">GitHub ↗</a></p></section>'
 
     if page == 'home':
-        content = f'<header class="hero"><div class="eyebrow"><span class="dot"></span>{t("BEIHANG UNIVERSITY · ZHONGGUANCUN LABORATORY", "北京航空航天大学 · 中关村实验室")}</div><h1>{t("VLA post-training", "VLA 后训练")}</h1><p class="intro">{t("I’m a Ph.D. student in Artificial Intelligence at <a href=\"https://www.buaa.edu.cn/\">Beihang University</a>, jointly trained with <strong>Zhongguancun Laboratory</strong> and advised by <strong>Prof. Baochang Zhang</strong>. My research focuses on <strong>VLA post-training</strong>.", "我是北京航空航天大学人工智能专业博士研究生，与<strong>中关村实验室</strong>联合培养，导师为<strong>张宝昌教授</strong>。我的研究方向是 <strong>VLA 后训练</strong>。")}</p><div class="hero-bottom">{link("research", t("Research & publications", "研究与论文"))}<span class="annotation">{t("BEIJING, CHINA", "中国 · 北京")}</span></div></header>'
+        content = f'<header class="hero"><div class="eyebrow"><span class="dot"></span>{t("BEIHANG UNIVERSITY · ZHONGGUANCUN LABORATORY", "北京航空航天大学 · 中关村实验室")}</div><h1>{t("VLA post-training", "VLA 后训练")}</h1><p class="intro">{t("I’m a Ph.D. student in Artificial Intelligence at <a href=\"https://www.buaa.edu.cn/\">Beihang University</a>, jointly trained with <strong>Zhongguancun Laboratory</strong> and advised by Prof. Baochang Zhang. My research focuses on <strong>VLA post-training</strong>.", "我是北京航空航天大学人工智能专业博士研究生，与<strong>中关村实验室</strong>联合培养，导师为张宝昌教授。我的研究方向是 <strong>VLA 后训练</strong>。")}</p><div class="hero-bottom">{link("research", t("Research & publications", "研究与论文"))}<span class="annotation">{t("BEIJING, CHINA", "中国 · 北京")}</span></div></header>'
         updates = []
         for n, item in enumerate(DATA['updates']):
-            body = emphasize(val(item['text']))
+            body = E(val(item['text']))
+            for name in item.get('people', []):
+                body = body.replace(E(name), f'<span class="person-name">{E(name)}</span>')
             if item.get('page'):
                 body = f'<a href="{url(item["page"])}">{body}</a>'
             paper_list = ''.join(f'<li>{E(name)}</li>' for name in item.get('papers', []))
@@ -135,30 +134,14 @@ def render(language, page):
         fibers = f'<article class="project"><div class="meta">2025 &nbsp; <span class="badge">{t("Capital Challenge Cup · Champion", "首都挑战杯 · 擂主")}</span></div><h3>{t("SmartFibers · AI-based industrial inspection", "SmartFibers · AI 工业质检")}</h3><p>{t("High-precision imaging and intelligent inspection of spandex yarn packages, awarded in the Capital Challenge Cup special competition.", "基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用，获首都挑战杯“青智未来”专项赛擂主。")}</p><div class="paper-links"><a href="https://github.com/MitakeMoca/SmartFibers-frontend">Frontend ↗</a><a href="https://github.com/MitakeMoca/SmartFibers-backend">Backend ↗</a></div></article>'
         content += section(t('Selected projects', '代表项目'), '02', star + pangu + fibers, 'projects') + contact()
 
-    elif page == 'mentorship':
-        content = title('MENTORSHIP / 03', t('Teaching & growing together.', '在教学中共同成长。'), t('Course teaching, research guidance, and learning resources at Beihang University.', '北京航空航天大学课程助教、学生科研指导与开放学习资源。'))
-        content += f'<div class="summary-stats"><div><strong>08</strong><span>{t("TA appointments", "课程助教经历")}</span></div><div><strong>02</strong><span>{t("head TA appointments", "助教组长经历")}</span></div><div><strong>2023—</strong><span>{t("teaching since", "开始参与课程教学")}</span></div></div>'
-        rows = ''
-        for course in DATA['courses']:
-            extra = ''
-            if course.get('award'):
-                extra = f'<p>{t("Outstanding Teaching Assistant · Beihang College", "获评北航学院优秀助教")}</p>'
-            if course.get('repo'):
-                extra = f'<p><a href="{course["repo"]}">{t("Open teaching repository ↗", "开源教学仓库 ↗")}</a></p>'
-            rows += f'<article class="course" data-course data-lead="{str(course["lead"]).lower()}"><time>{E(val(course["term"]))}</time><div><h3>{E(val(course["title"]))}</h3>{extra}</div><span class="course-role">{t("Head TA", "助教组长") if course["lead"] else t("Teaching Assistant", "课程助教")}</span></article>'
-        filters = f'<div class="filters js-only" hidden aria-label="{t("Filter teaching appointments", "筛选助教经历")}"><button class="filter" data-filter="all" aria-pressed="true">{t("All 8 appointments", "全部 8 门次")}</button><button class="filter" data-filter="lead" aria-pressed="false">{t("Head TA · 2", "助教组长 · 2")}</button></div>'
-        content += section(t('Course teaching', '课程教学'), '01', filters + rows, 'courses')
-        research = f'<article class="project" style="padding-top:0"><div class="meta">{t("QINGHAI SCIENCE & TECHNOLOGY PROJECT · 2025-GX-143", "青海省科技厅项目 · 2025-GX-143")}</div><h3>{t("Intelligent enterprise credit evaluation", "企业信用评价智能化")}</h3><p>{t("As the project lead, I guided two research studies on credit evaluation using structured financial indicators and unstructured risk disclosures. My work covered research design, feature modelling, method selection, experimental design, and manuscript revision.", "担任项目主要负责人，围绕结构化财务指标与非结构化风险披露文本，开展企业信用评价研究。主要负责研究方案设计与技术指导，指导两项研究的特征建模、方法选择与实验设计，并参与结果分析和论文修改。")}</p><p>{t("Supported by Qinghai’s Key R&D and Achievement Transformation Programme.", "项目获青海省重点研发与成果转化计划资助。")}</p></article>'
-        content += section(t('Research mentorship', '科研指导'), '02', research, 'research-mentorship')
-        resource = f'<a class="resource" href="https://github.com/MitakeMoca/BUAA_DS"><h3>BUAA_DS <span aria-hidden="true">↗</span></h3><p>{t("Reference implementations for Beihang’s Data Structures course. Open materials for studying algorithms and programming.", "北航数据结构课程部分参考代码，为算法和编程学习提供开放资料。")}</p><div class="meta">C / DATA STRUCTURES / OPEN SOURCE</div></a>'
-        content += section(t('Open learning resources', '开放学习资源'), '03', resource, 'resources') + contact()
 
     else:
         content = title('BACKGROUND / 04', t('Education & awards', '教育背景与荣誉'), t('My academic path at Beihang, from software engineering to artificial intelligence.', '从软件工程到人工智能，在北京航空航天大学的求学经历。'))
         content += section(t('Education', '教育背景'), '01', education(), 'education')
         content += section(t('Awards & recognition', '奖励与荣誉'), '02', awards(), 'awards') + contact()
 
-    nav = ''.join(f'<a href="{url(k)}" {"aria-current=page" if k == page else ""}>{val(v)}</a>' for k, v in PAGES.items())
+    nav_items = [('home', PAGES['home']), ('research', PAGES['research']), ('experiences', PAGES['experiences']), ('mentorship', ('Mentorship', '指导与教学')), ('background', PAGES['background'])]
+    nav = ''.join(f'<a href="{url(k)}" {"aria-current=page" if k == page else ""}>{val(v)}</a>' for k, v in nav_items)
     index = [('updates', t('Updates', '最新动态')), ('publications', t('Publications', '论文')), ('education', t('Education', '教育背景')), ('mentorship', t('Mentorship', '指导与教学')), ('awards', t('Awards', '荣誉'))] if page == 'home' else []
     index_html = '<nav class="page-index" aria-label="On this page">' + ''.join(f'<a href="#{k}">{v}</a>' for k, v in index) + '</nav>' if index else ''
     profile = f'<aside class="profile"><div class="avatar"><img src="{base}assets/avatar.jpg" alt="Qixuan Wu’s avatar" width="104" height="104"></div><h2>Qixuan Wu</h2><div class="role"><strong>{t("Ph.D. Student · Artificial Intelligence", "人工智能博士研究生")}</strong><strong>{t("Beihang University", "北京航空航天大学")}</strong><strong>{t("Zhongguancun Laboratory · Joint training", "中关村实验室 · 联合培养")}</strong></div><p class="location">{t("Beijing, China", "中国 · 北京")}</p><div class="profile-links"><a href="{DATA["github"]}">GitHub ↗</a><a href="mailto:{DATA["email"]}">{t("Email ↗", "邮件 ↗")}</a></div><ul class="profile-topics"><li>{t("VLA post-training", "VLA 后训练")}</li></ul>{index_html}</aside>'
@@ -178,6 +161,13 @@ for lang in ('en', 'zh'):
         directory = OUT / ('zh' if lang == 'zh' else '') / ('' if page == 'home' else page)
         directory.mkdir(parents=True, exist_ok=True)
         (directory / 'index.html').write_text(render(lang, page), encoding='utf-8')
+
+# Preserve existing bookmarks while keeping teaching on the homepage.
+for lang in ('en', 'zh'):
+    directory = OUT / ('zh' if lang == 'zh' else '') / 'mentorship'
+    directory.mkdir(parents=True, exist_ok=True)
+    label = 'Continue to teaching appointments' if lang == 'en' else '查看首页助教经历'
+    (directory / 'index.html').write_text(f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=../#mentorship"><meta name="robots" content="noindex"><title>{label}</title></head><body><a href="../#mentorship">{label}</a></body></html>', encoding='utf-8')
 
 (OUT / '.nojekyll').touch()
 (OUT / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://mitakemoca.github.io/sitemap.xml\n')

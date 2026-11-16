@@ -86,17 +86,6 @@
       ]
     },
     {
-      "year": "2024",
-      "title": [
-        "Outstanding Teaching Assistant · Beihang College",
-        "北航学院优秀助教"
-      ],
-      "detail": [
-        "Head Teaching Assistant for Fundamentals of Programming, Fall 2024.",
-        "2024 年秋《程序设计基础》课程助教组长。"
-      ]
-    },
-    {
       "year": "2025",
       "title": [
         "Outstanding Graduate · School of Software",
@@ -162,8 +151,7 @@
         "Fundamentals of Programming",
         "程序设计基础"
       ],
-      "lead": true,
-      "award": true
+      "lead": true
     },
     {
       "term": [
@@ -210,6 +198,10 @@
       "text": [
         "Congratulations to Ruixuan Luo and Benzhao Wu on winning a National Champion award in the Challenge Cup!",
         "祝贺 Ruixuan Luo、Benzhao Wu 获挑战杯揭榜挂帅擂台赛全国擂主！"
+      ],
+      "people": [
+        "Ruixuan Luo",
+        "Benzhao Wu"
       ]
     },
     {
@@ -237,6 +229,10 @@
       "papers": [
         "Correlation-Constrained Contrastive Pre-training and Ordinal-Aware Few-Label Adaptation for Cross-Sector Corporate Credit Rating",
         "Adaptive Multi-Head Weighted Fusion Model for Enterprise Credit Assessment Using Financial Indicators and Long-Text Risk Disclosures"
+      ],
+      "people": [
+        "Zhixiang Liu",
+        "Yibo Hao"
       ]
     },
     {
@@ -249,7 +245,11 @@
         "Began my Ph.D. in Artificial Intelligence at Beihang University, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.",
         "进入北航人工智能专业攻读博士，与中关村实验室联合培养，导师为张宝昌教授。"
       ],
-      "page": "background"
+      "page": "background",
+      "people": [
+        "Baochang Zhang",
+        "张宝昌"
+      ]
     },
     {
       "date": "2026",
@@ -273,7 +273,12 @@
         "Our project “Intelligent Operations Assistant for the Kylin Operating System” (StarOps) won the National Champion award at the 19th Challenge Cup competition. Congratulations to Haohan Tang, Jiayuxuan Yang, and Donghao Fu!",
         "“基于银河麒麟操作系统的智能运维管家工具研究”（星维管家）获第十九届挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Haohan Tang、Jiayuxuan Yang、Donghao Fu！"
       ],
-      "page": "experiences"
+      "page": "experiences",
+      "people": [
+        "Haohan Tang",
+        "Jiayuxuan Yang",
+        "Donghao Fu"
+      ]
     },
     {
       "date": "2025.06",
@@ -285,7 +290,10 @@
         "Our project “AI-Based High-Precision Imaging and Intelligent Inspection of Spandex Yarn Packages” won the Champion award in the Capital Challenge Cup special competition. Congratulations to Gengxiong Zhuang!",
         "“基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用”获首都挑战杯“青智未来”专项赛擂主。祝贺 Gengxiong Zhuang！"
       ],
-      "page": "experiences"
+      "page": "experiences",
+      "people": [
+        "Gengxiong Zhuang"
+      ]
     }
   ],
   "publications": [
@@ -371,7 +379,8 @@
           "name": "Guodong Guo"
         },
         {
-          "name": "Baochang Zhang"
+          "name": "Baochang Zhang",
+          "corresponding": true
         }
       ],
       "figure": "favr-main.png",
