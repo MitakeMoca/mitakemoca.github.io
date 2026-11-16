@@ -27,7 +27,20 @@
 .ta-list{display:grid;gap:11px}
 .ta-row{display:grid;grid-template-columns:100px minmax(0,1fr);gap:20px;font-size:13px;line-height:1.65}
 .ta-row time{font-size:11px;color:var(--muted);padding-top:2px}
-.ta-row a{color:var(--ink)}
+.ta-row .ta-repo{color:var(--accent);font-size:11px;margin-left:7px;white-space:nowrap}
 .ta-note{font-size:10px;color:var(--muted)}
 @media(max-width:1050px){.publication{grid-template-columns:160px minmax(0,1fr);gap:20px}}
 @media(max-width:620px){.publication{grid-template-columns:1fr;gap:17px}.paper-figure{width:100%;max-width:420px}.paper-figure img{max-height:260px;object-fit:contain}.publication .abstract{font-size:12px}.ta-row{grid-template-columns:77px minmax(0,1fr);gap:13px;font-size:12px}.ta-row time{font-size:10px}.ta-note{display:block}.hero h1{font-size:36px}.hero .eyebrow{font-size:9px;letter-spacing:1px}}
+
+/* Collapsible, justified abstracts and highlighted update names. */
+.paper-abstract{margin-top:12px}
+.paper-abstract summary{display:inline-flex;align-items:center;gap:9px;list-style:none;cursor:pointer;border:1px solid var(--line);border-radius:4px;padding:4px 10px;color:var(--accent);font-size:11px;line-height:1.6;background:var(--paper)}
+.paper-abstract summary::-webkit-details-marker{display:none}
+.paper-abstract summary:hover{border-color:var(--accent)}
+.paper-abstract summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.paper-abstract .collapse-label,.paper-abstract[open] .expand-label{display:none}
+.paper-abstract[open] .collapse-label{display:inline}
+.paper-abstract[open] .abstract-chevron{transform:rotate(180deg)}
+.publication .abstract{text-align:justify;text-justify:inter-word;overflow-wrap:break-word}
+.update .person-name{color:#1767aa}
+:root[data-theme=dark] .update .person-name{color:#8abaff}
