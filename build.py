@@ -36,6 +36,15 @@ def render(language):
     def section(heading, id_, body):
         return f'<section class="section" id="{id_}"><h2>{heading}</h2>{body}</section>'
 
+    def date_label(value):
+        # Keep each month/year together; a range may wrap only between endpoints.
+        parts = value.split(' — ', 1)
+        content = f'<span class="date-part">{E(parts[0])}</span>'
+        if len(parts) == 2:
+            content += f' <span class="date-part">— {E(parts[1])}</span>'
+        kind = ' date-range' if len(parts) == 2 else ''
+        return f'<time class="date-label{kind}">{content}</time>'
+
     def update(item, older=False):
         body = E(val(item['text']))
         for name in item.get('people', []):
@@ -45,7 +54,7 @@ def render(language):
         papers = ''.join(f'<li>{E(name)}</li>' for name in item.get('papers', []))
         if papers:
             body += f'<ul class="update-papers">{papers}</ul>'
-        return f'<article class="update" {"data-older-update" if older else ""}><time>{E(item["date"])}</time><div>{body}</div></article>'
+        return f'<article class="update" {"data-older-update" if older else ""}>{date_label(item["date"])}<div>{body}</div></article>'
 
     recent = ''.join(update(item) for item in DATA['updates'][:PREVIEW_UPDATES])
     older = DATA['updates'][PREVIEW_UPDATES:]
@@ -72,9 +81,9 @@ def render(language):
         school = E(val(item.get('institution', ['Beihang University', '北京航空航天大学'])))
         if item.get('rank'):
             school += f' · <strong>{E(val(item["rank"]))}</strong>'
-        education.append(f'<article class="timeline-row mini-edu"><time>{E(val(item["date"]))}</time><div><h3>{E(val(item["degree"]))}</h3><p class="school">{school}</p><p class="detail">{E(val(item["detail"]))}</p></div></article>')
+        education.append(f'<article class="timeline-row mini-edu">{date_label(val(item["date"]))}<div><h3>{E(val(item["degree"]))}</h3><p class="school">{school}</p><p class="detail">{E(val(item["detail"]))}</p></div></article>')
 
-    experience = f'<article class="timeline-row"><time>2026.11 — {t("Present", "至今")}</time><div><h3 class="company-heading"><img class="company-logo" src="{asset("baidu-logo.png")}" alt="Baidu logo" width="90" height="32"><span>{t("Baidu", "百度")}</span></h3><p class="job">{t("Agentic Embodied Intelligence", "Agentic 具身智能")}</p><p class="detail">{t("Research on VLA post-training for Agentic embodied intelligence.", "围绕 Agentic 具身智能开展 VLA 后训练研究。")}</p></div></article>'
+    experience = f'<article class="timeline-row">{date_label("2026.11 — " + t("Present", "至今"))}<div><h3 class="company-heading"><img class="company-logo" src="{asset("baidu-logo.png")}" alt="Baidu logo" width="90" height="32"><span>{t("Baidu", "百度")}</span></h3><p class="job">{t("Agentic Embodied Intelligence", "Agentic 具身智能")}</p><p class="detail">{t("Research on VLA post-training for Agentic embodied intelligence.", "围绕 Agentic 具身智能开展 VLA 后训练研究。")}</p></div></article>'
     projects = f'''<details class="project-details"><summary>{t('Selected projects', '代表项目')}<span class="chevron" aria-hidden="true">⌄</span></summary><div class="project-list">
 <article><h3>StarOps · {t('Intelligent operations for Kylin', '星维管家')}</h3><p>{t('Built a system-level agent for the Kylin operating system, integrating monitoring, anomaly diagnosis, automated optimisation, MCP-compatible services, and log anomaly detection.', '面向银河麒麟操作系统构建系统级 Agent，集成状态监控、异常诊断与自动调优，开发符合 MCP 协议的系统接口与日志异常检测算法。')}</p><a href="https://github.com/Kylin-StarOps-Team/StarOps">{t('Source code ↗', '项目代码 ↗')}</a></article>
 <article><h3>{t('Low-precision adaptation · Huawei Pangu', '低精度模型适配 · 华为盘古')}</h3><p>{t('Reproduced L4Q and adapted MXFP8 training schemes, investigating quantization-aware PEFT under limited compute and memory budgets.', '复现 L4Q，适配 MXFP8 训练方案，在有限算力与显存条件下探索量化感知 PEFT。')}</p></article>
@@ -85,9 +94,9 @@ def render(language):
     for course in DATA['courses']:
         role = f'<span class="ta-note"> · {t("Head TA", "助教组长")}</span>' if course.get('lead') else ''
         repo = f' <a class="ta-repo" href="{E(course["repo"])}">{t("Repository ↗", "教学仓库 ↗")}</a>' if course.get('repo') else ''
-        courses.append(f'<div class="ta-row" data-home-course><time>{E(val(course["term"]))}</time><div>{E(val(course["title"]))}{role}{repo}</div></div>')
+        courses.append(f'<div class="ta-row" data-home-course>{date_label(val(course["term"]))}<div>{E(val(course["title"]))}{role}{repo}</div></div>')
     mentorship = f'<p class="ta-heading">{t("Teaching Assistant · Beihang University", "课程助教 · 北京航空航天大学")}</p><div class="ta-list">{"".join(courses)}</div>'
-    awards = ''.join(f'<article class="timeline-row award-row"><time>{E(item["year"])}</time><div><h3>{E(val(item["title"]))}</h3><p class="detail">{E(val(item["detail"]))}</p></div></article>' for item in DATA['awards'])
+    awards = ''.join(f'<article class="timeline-row award-row">{date_label(item["year"])}<div><h3>{E(val(item["title"]))}</h3><p class="detail">{E(val(item["detail"]))}</p></div></article>' for item in DATA['awards'])
 
     intro = t('I am a Ph.D. student in Artificial Intelligence at <a href="https://www.buaa.edu.cn/">Beihang University</a>, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.', '我是北京航空航天大学人工智能专业博士研究生，与中关村实验室联合培养，导师为张宝昌教授。')
     about = f'<section class="about" id="about"><h1>{t("About", "关于我")}</h1><p>{intro}</p><p>{t("My research focuses on", "我的研究方向是")} <strong>{t("VLA post-training", "VLA 后训练")}</strong>。</p></section>'
@@ -104,7 +113,7 @@ def render(language):
     canonical = 'https://mitakemoca.github.io/' + ('zh/' if zh else '')
     description = t('Qixuan Wu: VLA post-training, publications, education, research experience, and teaching at Beihang University.', 'VLA 后训练、学术论文、教育背景、研究经历与课程教学。')
     theme_init = "document.documentElement.classList.add('js');try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}"
-    return f'''<!doctype html><html lang="{'zh-CN' if zh else 'en'}" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="site-version" content="{SITE_VERSION}"><meta name="color-scheme" content="light dark"><title>Qixuan Wu · {t('Homepage', '主页')}</title><meta name="description" content="{E(description)}"><link rel="canonical" href="{canonical}"><link rel="alternate" hreflang="en" href="https://mitakemoca.github.io/"><link rel="alternate" hreflang="zh-CN" href="https://mitakemoca.github.io/zh/"><meta property="og:title" content="Qixuan Wu · Homepage"><meta property="og:description" content="{E(description)}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="website"><link rel="icon" href="{asset('favicon.svg')}" type="image/svg+xml"><script>{theme_init}</script><link rel="stylesheet" href="{asset('home.css')}"><script defer src="{asset('home.js')}"></script></head><body id="top"><a class="skip" href="#main">{t('Skip to content', '跳转到正文')}</a><header class="topbar"><div class="top-inner"><a class="wordmark" href="#top">{t('Home', '首页')}</a><nav class="nav" id="navigation" aria-label="{t('Main navigation', '主导航')}">{nav}</nav><div class="tools"><a class="language" href="{home('en' if zh else 'zh')}" aria-label="{t('Switch to Chinese', 'Switch to English')}">{t('中文', 'EN')}</a><button class="theme" data-theme-toggle aria-label="{t('Toggle dark mode', '切换深色模式')}" aria-pressed="false" hidden>◐</button><button class="menu" data-menu-toggle aria-controls="navigation" aria-expanded="false" hidden>{t('Menu', '菜单')}</button></div></div></header><div class="shell">{profile}<main id="main">{content}</main></div><footer class="footer"><span>© 2026 Qixuan Wu</span><span>{t('Updated', '最近更新')} {E(DATA['updated'])} <a href="#top">{t('Back to top ↑', '返回顶部 ↑')}</a></span></footer></body></html>'''
+    return f'''<!doctype html><html lang="{'zh-CN' if zh else 'en'}" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="site-version" content="{SITE_VERSION}"><meta name="color-scheme" content="light dark"><title>Qixuan Wu · {t('Homepage', '主页')}</title><meta name="description" content="{E(description)}"><link rel="canonical" href="{canonical}"><link rel="alternate" hreflang="en" href="https://mitakemoca.github.io/"><link rel="alternate" hreflang="zh-CN" href="https://mitakemoca.github.io/zh/"><meta property="og:title" content="Qixuan Wu · Homepage"><meta property="og:description" content="{E(description)}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="website"><link rel="icon" href="{asset('favicon.svg')}" type="image/svg+xml"><script>{theme_init}</script><link rel="stylesheet" href="{asset('home.css')}"><script defer src="{asset('home.js')}"></script></head><body id="top"><a class="skip" href="#main">{t('Skip to content', '跳转到正文')}</a><header class="topbar"><div class="top-inner"><a class="wordmark" href="#top">{t('Home', '首页')}</a><nav class="nav" id="navigation" aria-label="{t('Main navigation', '主导航')}">{nav}</nav><div class="tools"><a class="language" href="{home('en' if zh else 'zh')}" aria-label="{t('Switch to Chinese', 'Switch to English')}">{t('中文', 'EN')}</a><button class="theme" data-theme-toggle aria-label="{t('Toggle dark mode', '切换深色模式')}" aria-pressed="false" hidden>◐</button><button class="menu" data-menu-toggle aria-controls="navigation" aria-expanded="false" hidden>{t('Menu', '菜单')}</button></div></div></header><div class="shell">{profile}<main id="main">{content}</main></div><footer class="footer"><span>© 2026 Qixuan Wu</span><span>{t('Updated', '最近更新')} <time class="footer-date" datetime="{E(DATA['updated'])}">{E(DATA['updated'])}</time> <a href="#top">{t('Back to top ↑', '返回顶部 ↑')}</a></span></footer></body></html>'''
 
 
 for lang in ('en', 'zh'):
