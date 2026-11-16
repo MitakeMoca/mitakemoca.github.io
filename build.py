@@ -107,6 +107,8 @@ def render(language, page):
             body = E(val(item['text']))
             for name in item.get('people', []):
                 body = body.replace(E(name), f'<span class="person-name">{E(name)}</span>')
+            for term in ('Champion', 'Oral', '擂主'):
+                body = body.replace(term, f'<strong>{term}</strong>')
             paper_list = ''.join(f'<li>{E(name)}</li>' for name in item.get('papers', []))
             if paper_list:
                 body += f'<ul class="update-papers">{paper_list}</ul>'
