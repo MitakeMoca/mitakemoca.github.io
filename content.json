@@ -1,6 +1,5 @@
 {
   "name": "Qixuan Wu",
-  "name_zh": "吴奇宣",
   "email": "1043530132@qq.com",
   "github": "https://github.com/MitakeMoca",
   "updated": "2026-11-16",
@@ -15,8 +14,12 @@
         "人工智能博士研究生"
       ],
       "detail": [
-        "Transferred from the master's programme. Advised by Prof. Baochang Zhang.",
-        "硕转博，导师：张宝昌教授。"
+        "Joint Ph.D. training with Zhongguancun Laboratory. Transferred from the master's programme. Advised by Prof. Baochang Zhang.",
+        "与中关村实验室联合培养。硕转博，导师：张宝昌教授。"
+      ],
+      "institution": [
+        "Beihang University · Zhongguancun Laboratory",
+        "北京航空航天大学 · 中关村实验室"
       ]
     },
     {
@@ -201,6 +204,17 @@
     {
       "date": "2026.11",
       "type": [
+        "Congratulations",
+        "祝贺"
+      ],
+      "text": [
+        "Congratulations to Ruixuan Luo and Benzhao Wu on winning a National Champion award in the Challenge Cup!",
+        "祝贺 Ruixuan Luo、Benzhao Wu 获挑战杯揭榜挂帅擂台赛全国擂主！"
+      ]
+    },
+    {
+      "date": "2026.11",
+      "type": [
         "Research",
         "研究"
       ],
@@ -211,16 +225,19 @@
       "page": "experiences"
     },
     {
-      "date": "2026 · Fall",
+      "date": "2026.09",
       "type": [
-        "Teaching",
-        "教学"
+        "Publication",
+        "论文"
       ],
       "text": [
-        "Teaching assistant for Machine Learning, Software Systems Analysis and Design, and Principles and Techniques of AI this fall.",
-        "本学期担任《机器学习》《软件系统分析与设计》《人工智能原理与技术》三门课程助教。"
+        "Two papers accepted as Oral presentations at ICEBE 2026 (AI + Finance). Congratulations to Zhixiang Liu and Yibo Hao!",
+        "两篇论文被 AI + 金融会议 ICEBE 2026 接收为 Oral。祝贺 Zhixiang Liu、Yibo Hao！"
       ],
-      "page": "mentorship"
+      "papers": [
+        "Correlation-Constrained Contrastive Pre-training and Ordinal-Aware Few-Label Adaptation for Cross-Sector Corporate Credit Rating",
+        "Adaptive Multi-Head Weighted Fusion Model for Enterprise Credit Assessment Using Financial Indicators and Long-Text Risk Disclosures"
+      ]
     },
     {
       "date": "2026.08",
@@ -229,8 +246,8 @@
         "教育"
       ],
       "text": [
-        "Began my Ph.D. in Artificial Intelligence at Beihang University, advised by Prof. Baochang Zhang.",
-        "硕转博，进入北航人工智能专业攻读博士，导师为张宝昌教授。"
+        "Began my Ph.D. in Artificial Intelligence at Beihang University, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.",
+        "进入北航人工智能专业攻读博士，与中关村实验室联合培养，导师为张宝昌教授。"
       ],
       "page": "background"
     },
@@ -247,50 +264,126 @@
       "page": "research"
     },
     {
-      "date": "2025",
+      "date": "2025.10",
       "type": [
         "Award",
         "获奖"
       ],
       "text": [
-        "StarOps won the National Champion award at the 19th Challenge Cup competition.",
-        "星维管家获第十九届挑战杯揭榜挂帅擂台赛全国擂主。"
+        "Our project “Intelligent Operations Assistant for the Kylin Operating System” (StarOps) won the National Champion award at the 19th Challenge Cup competition. Congratulations to Haohan Tang, Jiayuxuan Yang, and Donghao Fu!",
+        "“基于银河麒麟操作系统的智能运维管家工具研究”（星维管家）获第十九届挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Haohan Tang、Jiayuxuan Yang、Donghao Fu！"
       ],
       "page": "experiences"
     },
     {
-      "date": "2025",
+      "date": "2025.06",
       "type": [
         "Award",
         "获奖"
       ],
       "text": [
-        "Our AI-based spandex inspection project won the Capital Challenge Cup special competition.",
-        "AI 氨纶丝饼智能检测项目获首都挑战杯“青智未来”专项赛擂主。"
+        "Our project “AI-Based High-Precision Imaging and Intelligent Inspection of Spandex Yarn Packages” won the Champion award in the Capital Challenge Cup special competition. Congratulations to Gengxiong Zhuang!",
+        "“基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用”获首都挑战杯“青智未来”专项赛擂主。祝贺 Gengxiong Zhuang！"
       ],
-      "page": "background"
-    },
-    {
-      "date": "2024",
-      "type": [
-        "Teaching",
-        "教学"
-      ],
-      "text": [
-        "Recognised as an Outstanding Teaching Assistant at Beihang College.",
-        "获评北航学院优秀助教。"
-      ],
-      "page": "mentorship"
+      "page": "experiences"
     }
   ],
-  "publication": {
-    "title": "S³-LoRA: Sharpness-Score Sampling for Efficient and Generalizable Low-Rank Adaptation",
-    "authors": "Zhangyi Wang, Qixuan Wu, Linlin Yang, Yangguang Ren, Haoyu Huang, Sheng Xu, Zhongqian Fu, Haixia Pan, Baochang Zhang",
-    "venue": "ACM Multimedia 2026",
-    "url": "https://2026.acmmm.org/site/ACMMM2026_Full_Programme.pdf",
-    "description": [
-      "Sharpness-aware online sample selection directs the training budget toward informative samples. Shared EMA perturbations and score correction reduce the cost of sample scoring, while selective updates accelerate LoRA fine-tuning.",
-      "通过锐度感知的在线样本选择，将训练预算分配给更有价值的样本。利用 EMA 共享扰动与评分校正降低打分开销，通过选择性更新加速 LoRA 微调。"
-    ]
-  }
+  "publications": [
+    {
+      "id": "s3-lora",
+      "title": "S³-LoRA: Sharpness-Score Sampling for Efficient and Generalizable Low-Rank Adaptation",
+      "venue": "ACM Multimedia 2026",
+      "authors": [
+        {
+          "name": "Zhangyi Wang",
+          "equal": true
+        },
+        {
+          "name": "Qixuan Wu",
+          "equal": true
+        },
+        {
+          "name": "Linlin Yang",
+          "corresponding": true
+        },
+        {
+          "name": "Yangyang Ren"
+        },
+        {
+          "name": "Haoyu Huang"
+        },
+        {
+          "name": "Sheng Xu"
+        },
+        {
+          "name": "Zhongqian Fu"
+        },
+        {
+          "name": "Haixia Pan"
+        },
+        {
+          "name": "Baochang Zhang"
+        }
+      ],
+      "figure": "s3-lora-main.png",
+      "figure_alt": [
+        "Overview of the S³-LoRA sharpness-score sampling framework",
+        "S³-LoRA 锐度评分采样框架总览"
+      ],
+      "abstract": [
+        "Low-Rank Adaptation (LoRA) has become a cornerstone of parameter-efficient fine-tuning for large language models (LLMs) and vision-language models (VLMs). While incorporating Sharpness-Aware Minimization (SAM) principles theoretically enhances generalization by prioritizing perturbation-sensitive samples, existing approaches face two critical limitations: prohibitive computational overhead that negates LoRA’s efficiency, and a failure to exploit sample heterogeneity by treating all instances uniformly. To address these issues, we propose a Sharpness-Score Sampling framework for LoRA (S³-LoRA). Specifically, to enable efficient per-sample sharpness estimation, we design a lightweight sharpness proxy using only a single perturbed forward pass, guided by Exponential Moving Average (EMA) perturbations. Furthermore, we introduce a drift-corrected scoring mechanism that dynamically distinguishes intrinsic perturbation sensitivity from global optimization drift and persistent sample difficulty, which enables practical online example selection without incurring the full cost of SAM-style estimation. We provide theoretical analysis for the perturbation mechanism and the effectiveness of prioritizing high-sensitivity examples. Extensive experiments on reasoning, language understanding, code generation, and vision-language benchmarks demonstrate that S³-LoRA consistently achieves superior or comparable performance with more than a 1.3× training speedup, establishing new state-of-the-art benchmarks for this field.",
+        "低秩适配（LoRA）已成为大语言模型（LLM）与视觉语言模型（VLM）参数高效微调的基础方法。锐度感知最小化（SAM）通过优先考虑对扰动敏感的样本，在理论上有助于改善泛化，但现有方法存在两项关键局限：高昂的计算开销抵消了 LoRA 的效率优势，以及统一处理所有样本、未能利用样本异质性。为此，我们提出 LoRA 的锐度评分采样框架 S³-LoRA。该框架利用指数移动平均（EMA）引导的扰动，仅通过一次扰动前向计算构建轻量锐度代理，实现高效的逐样本锐度估计。进一步引入漂移校正评分机制，动态区分样本固有的扰动敏感度、全局优化漂移与持续的样本难度，从而在不承担完整 SAM 估计开销的情况下实现实用的在线样本选择。我们从理论上分析了扰动机制，以及优先选择高敏感度样本的有效性。在推理、语言理解、代码生成与视觉语言基准上的大量实验表明，S³-LoRA 在持续取得更优或相当性能的同时，实现超过 1.3 倍的训练加速。"
+      ],
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1145/3767308.3836326"
+        }
+      ]
+    },
+    {
+      "id": "favr",
+      "title": "FAVR: Flow-Aware Visual Residual Alignment for Vision-Language-Action Policies",
+      "venue": "arXiv",
+      "authors": [
+        {
+          "name": "Qixuan Wu",
+          "equal": true
+        },
+        {
+          "name": "Xiaole Yang",
+          "equal": true
+        },
+        {
+          "name": "Yuguang Yang",
+          "corresponding": true
+        },
+        {
+          "name": "Canyu Chen"
+        },
+        {
+          "name": "Linlin Yang"
+        },
+        {
+          "name": "Haixia Pan"
+        },
+        {
+          "name": "Guodong Guo"
+        },
+        {
+          "name": "Baochang Zhang"
+        }
+      ],
+      "figure": "favr-main.png",
+      "figure_alt": [
+        "Overview of the FAVR flow-aware visual residual alignment framework",
+        "FAVR 流感知视觉残差对齐框架总览"
+      ],
+      "abstract": [
+        "Pretrained video representations provide rich temporal information for robotic manipulation, yet effectively integrating them into existing vision-language-action (VLA) policies remains challenging. We present Flow-Aware Visual Residual Alignment (FAVR), a lightweight framework for flow-aware visual conditioning of frozen VLA policies. FAVR maintains a compact temporal visual state through linear Test-Time Training (TTT) and retrieves action-conditioned visual features throughout flow-based action generation. By exploiting the affine structure of the frozen action head, we explicitly characterize how injected visual features influence predicted action velocities and formulate flow-aware channel selection as a box-constrained optimization problem. We develop a FISTA-based solver for joint gate optimization and derive an efficient closed-form approximation through diagonalization and rescaling. With only 1.74–2.19M trainable parameters and 5,000 adaptation steps, FAVR improves pretrained VLA policies across benchmarks. On RoboTwin 2.0, FAVR improves LingBot-VLA from 87.12% to 90.04% under clean conditions and from 86.88% to 89.38% under randomized conditions. A controlled ablation on five RoboTwin tasks further shows that flow-aware gating increases average success from 72.0% with a gate shared across flow steps to 82.0%, demonstrating the benefit of adapting visual conditioning throughout action generation.",
+        "预训练视频表征为机器人操作提供了丰富的时序信息，但如何将其有效融入现有视觉语言动作（VLA）策略仍具挑战。我们提出流感知视觉残差对齐（FAVR），一种为冻结 VLA 策略提供流感知视觉条件的轻量框架。FAVR 通过线性测试时训练（TTT）维护紧凑的时序视觉状态，并在基于流的动作生成过程中持续检索以动作为条件的视觉特征。利用冻结动作头的仿射结构，我们显式刻画注入视觉特征对预测动作速度的影响，将流感知通道选择表述为带盒约束的优化问题。我们设计了基于 FISTA 的联合门控优化求解器，并通过对角化与缩放推导出高效的闭式近似。仅需 174 万至 219 万可训练参数和 5,000 步适配训练，FAVR 即可在多个基准上提升预训练 VLA 策略。在 RoboTwin 2.0 上，FAVR 将 LingBot-VLA 在干净条件下的成功率由 87.12% 提升至 90.04%，在随机化条件下由 86.88% 提升至 89.38%。五项 RoboTwin 任务的受控消融实验进一步表明，与跨流步骤共享门控相比，流感知门控将平均成功率从 72.0% 提升至 82.0%，验证了在动作生成全程动态调整视觉条件的价值。"
+      ],
+      "links": []
+    }
+  ]
 }
