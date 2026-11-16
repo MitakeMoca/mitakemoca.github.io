@@ -9,3 +9,25 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+
+/* Publication figures and compact teaching appointments. */
+.publication{grid-template-columns:210px minmax(0,1fr);gap:25px}
+.publication+.publication{border-top:1px solid var(--line);margin-top:29px;padding-top:29px}
+.paper-figure{display:block;align-self:start;color:var(--muted);border:1px solid var(--line);border-radius:3px;background:#fff;overflow:hidden}
+.paper-figure img{display:block;width:100%;height:auto;padding:8px}
+.paper-figure span{display:block;border-top:1px solid var(--line);padding:7px 10px;font:9px var(--mono);background:var(--paper);color:var(--accent)}
+.paper-figure:hover{text-decoration:none;border-color:var(--accent)}
+.publication .abstract{font-size:12px;line-height:1.8;color:var(--muted)}
+.publication .meta{font-weight:600;font-size:11px}
+.authors sup{font-size:.85em;margin-left:1px;color:var(--accent)}
+.author-note{font-size:10px;color:var(--muted);margin-top:20px}
+.update-papers{margin:9px 0 3px;padding-left:17px;color:var(--muted);font-size:11px;line-height:1.65}
+.update-papers li+li{margin-top:6px}
+.ta-heading{font-size:13px;margin-bottom:15px;color:var(--ink)}
+.ta-list{display:grid;gap:11px}
+.ta-row{display:grid;grid-template-columns:100px minmax(0,1fr);gap:20px;font-size:13px;line-height:1.65}
+.ta-row time{font-size:11px;color:var(--muted);padding-top:2px}
+.ta-row a{color:var(--ink)}
+.ta-note{font-size:10px;color:var(--muted)}
+@media(max-width:1050px){.publication{grid-template-columns:160px minmax(0,1fr);gap:20px}}
+@media(max-width:620px){.publication{grid-template-columns:1fr;gap:17px}.paper-figure{width:100%;max-width:420px}.paper-figure img{max-height:260px;object-fit:contain}.publication .abstract{font-size:12px}.ta-row{grid-template-columns:77px minmax(0,1fr);gap:13px;font-size:12px}.ta-row time{font-size:10px}.ta-note{display:block}.hero h1{font-size:36px}.hero .eyebrow{font-size:9px;letter-spacing:1px}}
