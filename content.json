@@ -1,0 +1,296 @@
+{
+  "name": "Qixuan Wu",
+  "name_zh": "吴奇宣",
+  "email": "1043530132@qq.com",
+  "github": "https://github.com/MitakeMoca",
+  "updated": "2026-11-16",
+  "education": [
+    {
+      "date": [
+        "Aug 2026 — Present",
+        "2026.08 — 至今"
+      ],
+      "degree": [
+        "Ph.D. student in Artificial Intelligence",
+        "人工智能博士研究生"
+      ],
+      "detail": [
+        "Transferred from the master's programme. Advised by Prof. Baochang Zhang.",
+        "硕转博，导师：张宝昌教授。"
+      ]
+    },
+    {
+      "date": [
+        "Sep 2025 — Jun 2026",
+        "2025.09 — 2026.06"
+      ],
+      "degree": [
+        "Master's studies in Software Engineering",
+        "软件工程硕士阶段"
+      ],
+      "detail": [
+        "GPA 3.90 / 4.00 · Ranked 1st in the programme.",
+        "GPA 3.90 / 4.00 · 专业排名第 1。"
+      ]
+    },
+    {
+      "date": [
+        "Aug 2021 — Jun 2025",
+        "2021.08 — 2025.06"
+      ],
+      "degree": [
+        "B.Eng. in Software Engineering",
+        "软件工程学士"
+      ],
+      "detail": [
+        "GPA 3.79 / 4.00 · Outstanding Graduate, School of Software.",
+        "GPA 3.79 / 4.00 · 软件学院优秀毕业生。"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "year": "2025",
+      "title": [
+        "National Champion · Challenge Cup",
+        "第十九届挑战杯揭榜挂帅擂台赛 · 全国擂主"
+      ],
+      "detail": [
+        "Intelligent operations assistant for the Kylin operating system · StarOps.",
+        "基于银河麒麟操作系统的智能运维管家工具研究 · 星维管家。"
+      ]
+    },
+    {
+      "year": "2025",
+      "title": [
+        "Champion · Capital Challenge Cup",
+        "首都挑战杯“青智未来”专项赛 · 擂主"
+      ],
+      "detail": [
+        "AI-based high-precision imaging and inspection of spandex yarn packages.",
+        "基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用。"
+      ]
+    },
+    {
+      "year": "15th",
+      "title": [
+        "National Second Prize · China Software Cup",
+        "第十五届“中国软件杯” · 全国二等奖"
+      ],
+      "detail": [
+        "Online editor built with collaborative large and small models.",
+        "基于大小模型协同的在线编辑器设计与开发。"
+      ]
+    },
+    {
+      "year": "2024",
+      "title": [
+        "Outstanding Teaching Assistant · Beihang College",
+        "北航学院优秀助教"
+      ],
+      "detail": [
+        "Head Teaching Assistant for Fundamentals of Programming, Fall 2024.",
+        "2024 年秋《程序设计基础》课程助教组长。"
+      ]
+    },
+    {
+      "year": "2025",
+      "title": [
+        "Outstanding Graduate · School of Software",
+        "软件学院优秀毕业生"
+      ],
+      "detail": [
+        "Beihang University.",
+        "北京航空航天大学。"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "term": [
+        "Fall 2026",
+        "2026 年秋"
+      ],
+      "title": [
+        "Machine Learning",
+        "机器学习"
+      ],
+      "lead": false
+    },
+    {
+      "term": [
+        "Fall 2026",
+        "2026 年秋"
+      ],
+      "title": [
+        "Software Systems Analysis and Design",
+        "软件系统分析与设计"
+      ],
+      "lead": false
+    },
+    {
+      "term": [
+        "Fall 2026",
+        "2026 年秋"
+      ],
+      "title": [
+        "Principles and Techniques of Artificial Intelligence",
+        "人工智能原理与技术"
+      ],
+      "lead": false
+    },
+    {
+      "term": [
+        "Fall 2025",
+        "2025 年秋"
+      ],
+      "title": [
+        "Software Systems Analysis and Design",
+        "软件系统分析与设计"
+      ],
+      "lead": false
+    },
+    {
+      "term": [
+        "Fall 2024",
+        "2024 年秋"
+      ],
+      "title": [
+        "Fundamentals of Programming",
+        "程序设计基础"
+      ],
+      "lead": true,
+      "award": true
+    },
+    {
+      "term": [
+        "Fall 2024",
+        "2024 年秋"
+      ],
+      "title": [
+        "Introduction to Artificial Intelligence",
+        "人工智能导论"
+      ],
+      "lead": true
+    },
+    {
+      "term": [
+        "Spring 2024",
+        "2024 年春"
+      ],
+      "title": [
+        "Data Structures and Programming",
+        "数据结构与程序设计"
+      ],
+      "lead": false,
+      "repo": "https://github.com/MitakeMoca/BUAA_DS"
+    },
+    {
+      "term": [
+        "Fall 2023",
+        "2023 年秋"
+      ],
+      "title": [
+        "Fundamentals of Programming",
+        "程序设计基础"
+      ],
+      "lead": false
+    }
+  ],
+  "updates": [
+    {
+      "date": "2026.11",
+      "type": [
+        "Research",
+        "研究"
+      ],
+      "text": [
+        "Started research on Agentic embodied intelligence at Baidu.",
+        "在百度开始 Agentic 具身智能方向的研究。"
+      ],
+      "page": "experiences"
+    },
+    {
+      "date": "2026 · Fall",
+      "type": [
+        "Teaching",
+        "教学"
+      ],
+      "text": [
+        "Teaching assistant for Machine Learning, Software Systems Analysis and Design, and Principles and Techniques of AI this fall.",
+        "本学期担任《机器学习》《软件系统分析与设计》《人工智能原理与技术》三门课程助教。"
+      ],
+      "page": "mentorship"
+    },
+    {
+      "date": "2026.08",
+      "type": [
+        "Education",
+        "教育"
+      ],
+      "text": [
+        "Began my Ph.D. in Artificial Intelligence at Beihang University, advised by Prof. Baochang Zhang.",
+        "硕转博，进入北航人工智能专业攻读博士，导师为张宝昌教授。"
+      ],
+      "page": "background"
+    },
+    {
+      "date": "2026",
+      "type": [
+        "Publication",
+        "论文"
+      ],
+      "text": [
+        "S³-LoRA accepted to ACM Multimedia 2026. I am a co-first author.",
+        "共同第一作者论文 S³-LoRA 被 ACM Multimedia 2026 录用。"
+      ],
+      "page": "research"
+    },
+    {
+      "date": "2025",
+      "type": [
+        "Award",
+        "获奖"
+      ],
+      "text": [
+        "StarOps won the National Champion award at the 19th Challenge Cup competition.",
+        "星维管家获第十九届挑战杯揭榜挂帅擂台赛全国擂主。"
+      ],
+      "page": "experiences"
+    },
+    {
+      "date": "2025",
+      "type": [
+        "Award",
+        "获奖"
+      ],
+      "text": [
+        "Our AI-based spandex inspection project won the Capital Challenge Cup special competition.",
+        "AI 氨纶丝饼智能检测项目获首都挑战杯“青智未来”专项赛擂主。"
+      ],
+      "page": "background"
+    },
+    {
+      "date": "2024",
+      "type": [
+        "Teaching",
+        "教学"
+      ],
+      "text": [
+        "Recognised as an Outstanding Teaching Assistant at Beihang College.",
+        "获评北航学院优秀助教。"
+      ],
+      "page": "mentorship"
+    }
+  ],
+  "publication": {
+    "title": "S³-LoRA: Sharpness-Score Sampling for Efficient and Generalizable Low-Rank Adaptation",
+    "authors": "Zhangyi Wang, Qixuan Wu, Linlin Yang, Yangguang Ren, Haoyu Huang, Sheng Xu, Zhongqian Fu, Haixia Pan, Baochang Zhang",
+    "venue": "ACM Multimedia 2026",
+    "url": "https://2026.acmmm.org/site/ACMMM2026_Full_Programme.pdf",
+    "description": [
+      "Sharpness-aware online sample selection directs the training budget toward informative samples. Shared EMA perturbations and score correction reduce the cost of sample scoring, while selective updates accelerate LoRA fine-tuning.",
+      "通过锐度感知的在线样本选择，将训练预算分配给更有价值的样本。利用 EMA 共享扰动与评分校正降低打分开销，通过选择性更新加速 LoRA 微调。"
+    ]
+  }
+}
