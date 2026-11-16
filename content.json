@@ -196,8 +196,8 @@
         "祝贺"
       ],
       "text": [
-        "Congratulations to Ruixuan Luo and Benzhao Wu on winning a National Champion award in the Challenge Cup!",
-        "祝贺 Ruixuan Luo、Benzhao Wu 获挑战杯揭榜挂帅擂台赛全国擂主！"
+        "“LinYi — Intelligent Memory Engine for Galaxy Kylin OS Agents” won a National Champion award in the Challenge Cup. Congratulations to Ruixuan Luo and Benzhao Wu!",
+        "“麟忆——银河麒麟 OS Agent 智能记忆引擎”获挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Ruixuan Luo、Benzhao Wu！"
       ],
       "people": [
         "Ruixuan Luo",
@@ -213,8 +213,7 @@
       "text": [
         "Started research on Agentic embodied intelligence at Baidu.",
         "在百度开始 Agentic 具身智能方向的研究。"
-      ],
-      "page": "experiences"
+      ]
     },
     {
       "date": "2026.09",
@@ -245,7 +244,6 @@
         "Began my Ph.D. in Artificial Intelligence at Beihang University, jointly trained with Zhongguancun Laboratory and advised by Prof. Baochang Zhang.",
         "进入北航人工智能专业攻读博士，与中关村实验室联合培养，导师为张宝昌教授。"
       ],
-      "page": "background",
       "people": [
         "Baochang Zhang",
         "张宝昌"
@@ -260,8 +258,7 @@
       "text": [
         "S³-LoRA accepted to ACM Multimedia 2026. I am a co-first author.",
         "共同第一作者论文 S³-LoRA 被 ACM Multimedia 2026 录用。"
-      ],
-      "page": "research"
+      ]
     },
     {
       "date": "2025.10",
@@ -273,7 +270,6 @@
         "Our project “Intelligent Operations Assistant for the Kylin Operating System” (StarOps) won the National Champion award at the 19th Challenge Cup competition. Congratulations to Haohan Tang, Jiayuxuan Yang, and Donghao Fu!",
         "“基于银河麒麟操作系统的智能运维管家工具研究”（星维管家）获第十九届挑战杯揭榜挂帅擂台赛全国擂主。祝贺 Haohan Tang、Jiayuxuan Yang、Donghao Fu！"
       ],
-      "page": "experiences",
       "people": [
         "Haohan Tang",
         "Jiayuxuan Yang",
@@ -290,7 +286,6 @@
         "Our project “AI-Based High-Precision Imaging and Intelligent Inspection of Spandex Yarn Packages” won the Champion award in the Capital Challenge Cup special competition. Congratulations to Gengxiong Zhuang!",
         "“基于 AI 的氨纶丝饼高精度成像智能检测技术研究及应用”获首都挑战杯“青智未来”专项赛擂主。祝贺 Gengxiong Zhuang！"
       ],
-      "page": "experiences",
       "people": [
         "Gengxiong Zhuang"
       ]
@@ -342,12 +337,7 @@
         "Low-Rank Adaptation (LoRA) has become a cornerstone of parameter-efficient fine-tuning for large language models (LLMs) and vision-language models (VLMs). While incorporating Sharpness-Aware Minimization (SAM) principles theoretically enhances generalization by prioritizing perturbation-sensitive samples, existing approaches face two critical limitations: prohibitive computational overhead that negates LoRA’s efficiency, and a failure to exploit sample heterogeneity by treating all instances uniformly. To address these issues, we propose a Sharpness-Score Sampling framework for LoRA (S³-LoRA). Specifically, to enable efficient per-sample sharpness estimation, we design a lightweight sharpness proxy using only a single perturbed forward pass, guided by Exponential Moving Average (EMA) perturbations. Furthermore, we introduce a drift-corrected scoring mechanism that dynamically distinguishes intrinsic perturbation sensitivity from global optimization drift and persistent sample difficulty, which enables practical online example selection without incurring the full cost of SAM-style estimation. We provide theoretical analysis for the perturbation mechanism and the effectiveness of prioritizing high-sensitivity examples. Extensive experiments on reasoning, language understanding, code generation, and vision-language benchmarks demonstrate that S³-LoRA consistently achieves superior or comparable performance with more than a 1.3× training speedup, establishing new state-of-the-art benchmarks for this field.",
         "低秩适配（LoRA）已成为大语言模型（LLM）与视觉语言模型（VLM）参数高效微调的基础方法。锐度感知最小化（SAM）通过优先考虑对扰动敏感的样本，在理论上有助于改善泛化，但现有方法存在两项关键局限：高昂的计算开销抵消了 LoRA 的效率优势，以及统一处理所有样本、未能利用样本异质性。为此，我们提出 LoRA 的锐度评分采样框架 S³-LoRA。该框架利用指数移动平均（EMA）引导的扰动，仅通过一次扰动前向计算构建轻量锐度代理，实现高效的逐样本锐度估计。进一步引入漂移校正评分机制，动态区分样本固有的扰动敏感度、全局优化漂移与持续的样本难度，从而在不承担完整 SAM 估计开销的情况下实现实用的在线样本选择。我们从理论上分析了扰动机制，以及优先选择高敏感度样本的有效性。在推理、语言理解、代码生成与视觉语言基准上的大量实验表明，S³-LoRA 在持续取得更优或相当性能的同时，实现超过 1.3 倍的训练加速。"
       ],
-      "links": [
-        {
-          "label": "DOI",
-          "url": "https://doi.org/10.1145/3767308.3836326"
-        }
-      ]
+      "links": []
     },
     {
       "id": "favr",

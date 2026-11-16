@@ -96,7 +96,7 @@ def render(language, page):
         return '<div class="explore-grid">' + ''.join(f'<a class="explore-item" href="{url(k)}"><h3>{val(PAGES[k])}<span aria-hidden="true">↗</span></h3><p>{d}</p></a>' for k, d in options) + '</div>'
 
     def contact():
-        return f'<section class="contact" id="contact"><div class="eyebrow">{t("KEEP IN TOUCH", "保持联系")}</div><h2 style="margin-top:12px">{t("Let’s exchange ideas.", "欢迎交流。")}</h2><p>{t("For research, collaboration, or questions about the teaching materials:", "如果你想交流研究、探讨合作，或讨论教学资料：")}<br><a href="mailto:{DATA["email"]}">{DATA["email"]}</a> &nbsp; / &nbsp; <a href="{DATA["github"]}">GitHub ↗</a></p></section>'
+        return f'<section class="contact" id="contact"><div class="eyebrow">{t("KEEP IN TOUCH", "保持联系")}</div><p>{t("For research, collaboration, or questions about the teaching materials:", "如果你想交流研究、探讨合作，或讨论教学资料：")}<br><a href="mailto:{DATA["email"]}">{DATA["email"]}</a> &nbsp; / &nbsp; <a href="{DATA["github"]}">GitHub ↗</a></p></section>'
 
     if page == 'home':
         content = f'<header class="hero"><div class="eyebrow"><span class="dot"></span>{t("BEIHANG UNIVERSITY · ZHONGGUANCUN LABORATORY", "北京航空航天大学 · 中关村实验室")}</div><h1>{t("VLA post-training", "VLA 后训练")}</h1><p class="intro">{t("I’m a Ph.D. student in Artificial Intelligence at <a href=\"https://www.buaa.edu.cn/\">Beihang University</a>, jointly trained with <strong>Zhongguancun Laboratory</strong> and advised by Prof. Baochang Zhang. My research focuses on <strong>VLA post-training</strong>.", "我是北京航空航天大学人工智能专业博士研究生，与<strong>中关村实验室</strong>联合培养，导师为张宝昌教授。我的研究方向是 <strong>VLA 后训练</strong>。")}</p><div class="hero-bottom">{link("research", t("Research & publications", "研究与论文"))}<span class="annotation">{t("BEIJING, CHINA", "中国 · 北京")}</span></div></header>'
@@ -105,8 +105,6 @@ def render(language, page):
             body = E(val(item['text']))
             for name in item.get('people', []):
                 body = body.replace(E(name), f'<span class="person-name">{E(name)}</span>')
-            if item.get('page'):
-                body = f'<a href="{url(item["page"])}">{body}</a>'
             paper_list = ''.join(f'<li>{E(name)}</li>' for name in item.get('papers', []))
             if paper_list:
                 body += f'<ul class="update-papers">{paper_list}</ul>'
