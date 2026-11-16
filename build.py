@@ -2,12 +2,20 @@
 """Build a bilingual, dependency-free GitHub Pages site from content.json."""
 import argparse
 import html
+import hashlib
 import json
 import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DATA = json.loads((ROOT / 'content.json').read_text())
+# Keep navigation and assets on one release even when older pages are cached.
+release_hash = hashlib.sha256()
+for source in [ROOT / 'build.py', ROOT / 'content.json', *sorted((ROOT / 'assets').rglob('*'))]:
+    if source.is_file():
+        release_hash.update(source.relative_to(ROOT).as_posix().encode())
+        release_hash.update(source.read_bytes())
+SITE_VERSION = release_hash.hexdigest()[:12]
 parser = argparse.ArgumentParser()
 parser.add_argument('--out', default='dist')
 OUT = ROOT / parser.parse_args().out
@@ -30,7 +38,10 @@ def render(language, page):
         lang = language if lang is None else lang
         if name == 'mentorship':
             return url('home', lang) + '#mentorship'
-        return base + ('zh/' if lang == 'zh' else '') + ('' if name == 'home' else name + '/')
+        return base + ('zh/' if lang == 'zh' else '') + ('' if name == 'home' else name + '/') + '?v=' + SITE_VERSION
+
+    def asset(name):
+        return base + 'assets/' + name + '?v=' + SITE_VERSION
 
     def link(name, text):
         return f'<a class="text-link" href="{url(name)}">{text}<span aria-hidden="true">↗</span></a>'
@@ -70,7 +81,7 @@ def render(language, page):
                 markers = ('*' if author.get('equal') else '') + ('†' if author.get('corresponding') else '')
                 authors.append(name + (f'<sup>{markers}</sup>' if markers else ''))
             author_line = ', '.join(authors)
-            figure_url = base + 'assets/' + paper['figure']
+            figure_url = asset(paper['figure'])
             figure = f'<a class="paper-figure" href="{figure_url}" target="_blank" rel="noopener"><img src="{figure_url}" alt="{E(val(paper["figure_alt"]))}" loading="lazy"><span>{t("View figure ↗", "查看主图 ↗")}</span></a>'
             links = ''.join(f'<a href="{x["url"]}">{E(x["label"])} ↗</a>' for x in paper.get('links', []))
             papers.append(f'<article class="publication" id="{paper["id"]}">{figure}<div><div class="meta">{E(paper["venue"])}</div><h3>{E(paper["title"])}</h3><p class="authors">{author_line}</p><details class="paper-abstract"><summary><span class="expand-label">{t('Show abstract', '展开摘要')}</span><span class="collapse-label">{t('Hide abstract', '收起摘要')}</span><span class="abstract-chevron" aria-hidden="true">⌄</span></summary><p class="abstract" data-full-abstract>{E(val(paper["abstract"]))}</p></details>{f"<div class=paper-links>{links}</div>" if links else ""}</div></article>')
@@ -145,7 +156,7 @@ def render(language, page):
     nav = ''.join(f'<a href="{url(k)}" {"aria-current=page" if k == page else ""}>{val(v)}</a>' for k, v in nav_items)
     index = [('updates', t('Updates', '最新动态')), ('publications', t('Publications', '论文')), ('education', t('Education', '教育背景')), ('mentorship', t('Mentorship', '指导与教学')), ('awards', t('Awards', '荣誉'))] if page == 'home' else []
     index_html = '<nav class="page-index" aria-label="On this page">' + ''.join(f'<a href="#{k}">{v}</a>' for k, v in index) + '</nav>' if index else ''
-    profile = f'<aside class="profile"><div class="avatar"><img src="{base}assets/avatar.jpg" alt="Qixuan Wu’s avatar" width="104" height="104"></div><h2>Qixuan Wu (Moca)</h2><div class="role"><strong>{t("Ph.D. Student · Artificial Intelligence", "人工智能博士研究生")}</strong><strong>{t("Beihang University", "北京航空航天大学")}</strong><strong>{t("Zhongguancun Laboratory · Joint training", "中关村实验室 · 联合培养")}</strong></div><p class="location">{t("Beijing, China", "中国 · 北京")}</p><div class="profile-links"><a href="{DATA["github"]}">GitHub ↗</a><a href="mailto:{DATA["email"]}">{t("Email ↗", "邮件 ↗")}</a></div><ul class="profile-topics"><li>{t("VLA post-training", "VLA 后训练")}</li></ul>{index_html}</aside>'
+    profile = f'<aside class="profile"><div class="avatar"><img src="{asset('avatar.jpg')}" alt="Qixuan Wu’s avatar" width="104" height="104"></div><h2>Qixuan Wu (Moca)</h2><div class="role"><strong>{t("Ph.D. Student · Artificial Intelligence", "人工智能博士研究生")}</strong><strong>{t("Beihang University", "北京航空航天大学")}</strong><strong>{t("Zhongguancun Laboratory · Joint training", "中关村实验室 · 联合培养")}</strong></div><p class="location">{t("Beijing, China", "中国 · 北京")}</p><div class="profile-links"><a href="{DATA["github"]}">GitHub ↗</a><a href="mailto:{DATA["email"]}">{t("Email ↗", "邮件 ↗")}</a></div><ul class="profile-topics"><li>{t("VLA post-training", "VLA 后训练")}</li></ul>{index_html}</aside>'
     absolute = 'https://mitakemoca.github.io/' + ('zh/' if zh else '') + ('' if page == 'home' else page + '/')
     en_absolute = 'https://mitakemoca.github.io/' + ('' if page == 'home' else page + '/')
     label = 'Qixuan Wu · ' + val(PAGES[page])
@@ -153,7 +164,7 @@ def render(language, page):
     theme_init = "try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}"
     return f'''<!doctype html>
 <html lang="{'zh-CN' if zh else 'en'}" data-theme="light">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>{E(label)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{absolute}"><link rel="alternate" hreflang="en" href="{en_absolute}"><link rel="alternate" hreflang="zh-CN" href="{en_absolute.replace('.io/', '.io/zh/')}"><meta property="og:title" content="{E(label)}"><meta property="og:description" content="{E(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{absolute}"><link rel="icon" href="{base}assets/favicon.svg" type="image/svg+xml"><script>{theme_init}</script><link rel="stylesheet" href="{base}assets/site.css"><script defer src="{base}assets/site.js"></script><noscript><style>@media(max-width:620px){{.top-inner{{height:auto;flex-wrap:wrap;padding-top:15px}}.nav{{display:flex;position:static;order:3;width:100%;flex-direction:row;flex-wrap:wrap;padding:0 0 12px;gap:15px}}.nav a{{line-height:30px}}}}</style></noscript></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="site-version" content="{SITE_VERSION}"><title>{E(label)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{absolute}"><link rel="alternate" hreflang="en" href="{en_absolute}"><link rel="alternate" hreflang="zh-CN" href="{en_absolute.replace('.io/', '.io/zh/')}"><meta property="og:title" content="{E(label)}"><meta property="og:description" content="{E(desc)}"><meta property="og:type" content="website"><meta property="og:url" content="{absolute}"><link rel="icon" href="{asset('favicon.svg')}" type="image/svg+xml"><script>{theme_init}</script><link rel="stylesheet" href="{asset('site.css')}"><script defer src="{asset('site.js')}"></script><noscript><style>@media(max-width:620px){{.top-inner{{height:auto;flex-wrap:wrap;padding-top:15px}}.nav{{display:flex;position:static;order:3;width:100%;flex-direction:row;flex-wrap:wrap;padding:0 0 12px;gap:15px}}.nav a{{line-height:30px}}}}</style></noscript></head>
 <body><a class="skip" href="#main">{t('Skip to content', '跳转到正文')}</a><header class="topbar"><div class="top-inner"><a class="wordmark" href="{url('home')}">Qixuan Wu<span>.</span></a><nav class="nav" id="navigation" aria-label="{t('Main navigation', '主导航')}">{nav}</nav><div class="tools"><a href="{url(page, 'en' if zh else 'zh')}" lang="{'en' if zh else 'zh-CN'}" aria-label="{t('Switch to Chinese', 'Switch to English')}">{t('中文', 'EN')}</a><button class="theme js-only" data-theme-toggle aria-label="{t('Toggle dark mode', '切换深色模式')}" aria-pressed="false" hidden>◐</button><button class="menu js-only" data-menu-toggle aria-controls="navigation" aria-expanded="false" hidden>{t('Menu', '菜单')}</button></div></div></header><div class="shell">{profile}<main id="main">{content}</main></div><footer class="footer"><span>© 2026 Qixuan Wu</span><span>{t('Last updated', '最近更新')} {DATA['updated']} &nbsp; <a href="#main">{t('Back to top ↑', '返回顶部 ↑')}</a></span></footer></body></html>'''
 
 
@@ -168,7 +179,7 @@ for lang in ('en', 'zh'):
     directory = OUT / ('zh' if lang == 'zh' else '') / 'mentorship'
     directory.mkdir(parents=True, exist_ok=True)
     label = 'Continue to teaching appointments' if lang == 'en' else '查看首页助教经历'
-    (directory / 'index.html').write_text(f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=../#mentorship"><meta name="robots" content="noindex"><title>{label}</title></head><body><a href="../#mentorship">{label}</a></body></html>', encoding='utf-8')
+    (directory / 'index.html').write_text(f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=../?v={SITE_VERSION}#mentorship"><meta name="robots" content="noindex"><title>{label}</title></head><body><a href="../?v={SITE_VERSION}#mentorship">{label}</a></body></html>', encoding='utf-8')
 
 (OUT / '.nojekyll').touch()
 (OUT / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://mitakemoca.github.io/sitemap.xml\n')
