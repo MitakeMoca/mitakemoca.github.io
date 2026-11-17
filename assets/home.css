@@ -23,3 +23,8 @@
   .ta-row{grid-template-columns:110px minmax(0,1fr);column-gap:20px}
   .award-row{grid-template-columns:64px minmax(0,1fr);gap:6px 20px}
 }
+
+/* Contact links keep each icon and label together when the header wraps. */
+.profile-links .contact-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;line-height:1.7}
+.contact-icon{display:block;flex-shrink:0;width:17px;height:17px}
+.contact-icon.redbook{width:25px;color:#ff2442}
